@@ -1,14 +1,29 @@
 
 
-var http = require("http");
-var fs = require("fs");
-var server = createServer(function(req,res){
-    if(req.url == "/"){
-       let myData=  readFileSync("index.html");
-        res.writeHead(200,{"content- type":"tex/html"});
-        res.write(myData);
+let http =require("http");
+let fs = require("fs");
+let server =http.createServer(function(req,res){
+
+  if(req.url =="/"){
+    var error = fs.renameSync("new.txt","neww.txt");
+
+
+
+     if(error){
+      res.writeHead(200,{"content-type":"text/html"});
+      res.write("Rename Failed");
+      res.end();
+
+     }
+     else{
+    
+        res.writeHead(200,{"content-type":"text/html"});
+        res.write("Rename sucesss");
         res.end();
-    };
-});
- server.listen(5050);
- console.log("server run sucess");
+        
+     }
+  }
+})
+server.listen(5050);
+
+console.log("Sucess"); 
